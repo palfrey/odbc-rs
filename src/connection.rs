@@ -4,7 +4,7 @@ use super::result::{into_result, into_result_with};
 
 /// Represents a connection to an ODBC data source
 pub struct Connection<'env> {
-    safe: safe::Connection<'env>,
+    safe: safe::Connection<'env, safe::AutocommitOn>,
 }
 
 impl<'env> Handle for Connection<'env> {
