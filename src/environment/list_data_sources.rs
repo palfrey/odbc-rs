@@ -57,6 +57,7 @@ impl Environment<Version3> {
             safe::Environment::drivers,
             ffi::SQL_FETCH_FIRST,
         )?;
+        println!("Got to alloc_info");
 
         let mut driver_list = Vec::with_capacity(num_drivers);
 
@@ -71,6 +72,7 @@ impl Environment<Version3> {
                 &mut attribute_buffer,
             )?
                 {
+                    println!("Got to get_info with {}", desc);
                     driver_list.push(DriverInfo {
                         description: desc.into_owned(),
                         attributes: Self::parse_attributes(&attr),
