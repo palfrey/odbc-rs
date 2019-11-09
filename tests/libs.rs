@@ -202,6 +202,7 @@ fn prepared_execution() {
 #[cfg_attr(not(feature = "travis"), ignore)]
 #[test]
 fn list_drivers() {
+    env_logger::init();
     let mut environment = create_environment_v3().unwrap();
     let drivers = environment.drivers().expect("Drivers can be iterated over");
     println!("{:?}", drivers);
