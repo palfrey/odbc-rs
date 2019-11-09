@@ -33,6 +33,6 @@ script:
 after_success:
  - cargo coveralls
 env:
- - global:
+ global:
    - RUST_BACKTRACE=1
    - RUST_TEST_THREADS=1
