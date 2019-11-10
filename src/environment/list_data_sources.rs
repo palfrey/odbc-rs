@@ -57,13 +57,14 @@ impl Environment<Version3> {
             safe::Environment::drivers,
             ffi::SQL_FETCH_FIRST,
         )?;
-        println!("Got to alloc_info");
+        println!("Got to alloc_info {}", num_drivers);
 
         let mut driver_list = Vec::with_capacity(num_drivers);
 
         if num_drivers > 0 {
             let mut description_buffer = vec![0; (max_desc + 1) as usize];
             let mut attribute_buffer = vec![0; (max_attr + 1) as usize];
+            println!("max_desc: {}", max_desc);
             while let Some((desc, attr)) =
             self.get_info(
                 safe::Environment::drivers,
