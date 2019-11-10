@@ -74,6 +74,7 @@ impl Environment<Version3> {
             )?
                 {
                     println!("Got to get_info with {}", desc);
+                    println!("description size: {} attribute size: {}", desc.len(), attr.len());
                     driver_list.push(DriverInfo {
                         description: desc.into_owned(),
                         attributes: Self::parse_attributes(&attr),
