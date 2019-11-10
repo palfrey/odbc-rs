@@ -62,8 +62,8 @@ impl Environment<Version3> {
         let mut driver_list = Vec::with_capacity(num_drivers);
 
         if num_drivers > 0 {
-            let mut description_buffer = vec![0; max_desc as usize];
-            let mut attribute_buffer = vec![0; max_attr as usize];
+            let mut description_buffer = vec![0; (max_desc + 1) as usize];
+            let mut attribute_buffer = vec![0; (max_attr + 1) as usize];
             println!("max_desc: {} max_attr: {}", max_desc, max_attr);
             while let Some((desc, attr)) =
             self.get_info(
@@ -181,10 +181,10 @@ impl Environment<Version3> {
         f: SqlInfoMethod,
         direction: ffi::FetchOrientation,
     ) -> Result<(ffi::SQLSMALLINT, ffi::SQLSMALLINT, usize)> {
-        let mut string_buf1 = [0; 0];
-        let mut string_buf2 = [0; 2];
+        let mut string_buf1 = [0; 512];
+        let mut string_buf2 = [0; 512];
         let mut max1 = 0;
-        let mut max2 = 2;
+        let mut max2 = 0;
         let mut count = 0;
 
         let mut result = f(
