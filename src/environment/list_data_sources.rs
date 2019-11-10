@@ -55,7 +55,7 @@ impl Environment<Version3> {
         // alloc_info iterates once over every driver to obtain the required buffer sizes
         let (max_desc, max_attr, num_drivers) = self.alloc_info(
             safe::Environment::drivers,
-            ffi::SQL_FETCH_NEXT,
+            ffi::SQL_FETCH_FIRST,
         )?;
         println!("Got to alloc_info {}", num_drivers);
 
@@ -199,6 +199,7 @@ impl Environment<Version3> {
             match result {
                 safe::ReturnOption::Success((buf1_length_out, buf2_length_out)) |
                 safe::ReturnOption::Info((buf1_length_out, buf2_length_out)) => {
+                    println!("Got alloc with {} and {}", buf1_length_out, buf2_length_out);
                     count += 1;
                     max1 = max(max1, buf1_length_out);
                     max2 = max(max2, buf2_length_out);
