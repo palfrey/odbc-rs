@@ -10,6 +10,7 @@ matrix:
    - rust: nightly
 cache: cargo
 addons:
+  postgresql: 11
   apt:
     packages:
      - libcurl4-openssl-dev
