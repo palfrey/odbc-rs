@@ -62,9 +62,9 @@ impl Environment<Version3> {
         let mut driver_list = Vec::with_capacity(num_drivers);
 
         if num_drivers > 0 {
-            let mut description_buffer = vec![0; (max_desc + 1) as usize];
-            let mut attribute_buffer = vec![0; (max_attr + 1) as usize];
-            println!("max_desc: {}", max_desc);
+            let mut description_buffer = vec![0; 512 as usize];
+            let mut attribute_buffer = vec![0; 512 as usize];
+            println!("max_desc: {} max_attr: {}", max_desc, max_attr);
             while let Some((desc, attr)) =
             self.get_info(
                 safe::Environment::drivers,
