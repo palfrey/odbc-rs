@@ -55,7 +55,7 @@ impl Environment<Version3> {
         // alloc_info iterates once over every driver to obtain the required buffer sizes
         let (max_desc, max_attr, num_drivers) = self.alloc_info(
             safe::Environment::drivers,
-            ffi::SQL_FETCH_FIRST,
+            ffi::SQL_FETCH_NEXT,
         )?;
         println!("Got to alloc_info {}", num_drivers);
 
