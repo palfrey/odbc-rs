@@ -52,7 +52,7 @@ impl Environment<Version3> {
     pub fn drivers(&mut self) -> Result<Vec<DriverInfo>> {
         // Iterate twice, once for reading the maximum required buffer lengths so we can read
         // everything without truncating and a second time for actually storing the values
-        // alloc_info iterates ones over every driver to obtain the requiered buffer sizes
+        // alloc_info iterates once over every driver to obtain the required buffer sizes
         let (max_desc, max_attr, num_drivers) = self.alloc_info(
             safe::Environment::drivers,
             ffi::SQL_FETCH_FIRST,
@@ -99,14 +99,14 @@ impl Environment<Version3> {
         self.data_sources_impl(ffi::SQL_FETCH_FIRST_USER)
     }
 
-    /// Use SQL_FETCH_FIRST, SQL_FETCH_FIRST_USER or SQL_FETCH_FIRST_SYSTEM, to get all, user or
+    /// Use SQL_FETCH_FIRST, SQL_FETCH_FIRST_USER or SQL_FETCH_FIRST_SYSTEM, to get all user or
     /// system data sources
     fn data_sources_impl(
         &mut self,
         direction: ffi::FetchOrientation,
     ) -> Result<Vec<DataSourceInfo>> {
 
-        // alloc_info iterates ones over every datasource to obtain the requiered buffer sizes
+        // alloc_info iterates once over every datasource to obtain the required buffer sizes
         let (max_name, max_desc, num_sources) =
             self.alloc_info(safe::Environment::data_sources, direction)?;
 
@@ -117,7 +117,7 @@ impl Environment<Version3> {
             let mut description_buffer: Vec<_> = (0..(max_desc + 1)).map(|_| 0u8).collect();
 
             // Before we call SQLDataSources with SQL_FETCH_NEXT, we have to call it with either
-            // SQL_FETCH_FIRST, SQL_FETCH_FIRST_USER or SQL_FETCH_FIRST_SYSTEM, to get all, user or
+            // SQL_FETCH_FIRST, SQL_FETCH_FIRST_USER or SQL_FETCH_FIRST_SYSTEM, to get all user or
             // system data sources
             if let Some((name, desc)) =
             self.get_info(
