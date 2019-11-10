@@ -1,6 +1,6 @@
 sudo: false
 language: rust
-dist: bionic
+dist: xenial
 rust:
  - stable
  - beta
@@ -10,7 +10,6 @@ matrix:
    - rust: nightly
 cache: cargo
 addons:
-  postgresql: 10
   apt:
     packages:
      - libcurl4-openssl-dev
